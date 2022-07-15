@@ -9,7 +9,10 @@
     </div>
 
     {% for comment in comments %}
-        {{ comment.name }} ({{ comment.createdAt |date }}): {{ comment.message}} <span data-id="{{ comment.id }}" class="remove-comment">X</span>
+        <div style="margin: 5px">
+            {{ comment.name }} ({{ comment.createdAt |date }}): {{ comment.message}}
+            {% if session.user %}<a data-id="{{ comment.id }}" class="remove-comment">X</a>{% endif %}
+        </div>
     {% endfor %}
 {% endblock %}
 
@@ -18,8 +21,22 @@
     const comments = document.getElementsByClassName("remove-comment");
     for (let i = 0; i < comments.length; i++) {
     comments.item(i).addEventListener('click', function(e) {
+
+        e.preventDefault();
+
         if (confirm('Are you sure about removing the comment')) {
             //TODO: ajax call to remove comment
+            let xhr = new XMLHttpRequest()
+
+            xhr.open('DELETE', 'comment/' + this.getAttribute('data-id'), true)
+            xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+            xhr.send();
+
+            xhr.onload = function () {
+                if(xhr.status === 200) {
+                    alert("Comment successfully deleted!")
+                }
+            }
         }
     });
 }
