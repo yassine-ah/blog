@@ -21,6 +21,9 @@ class InstallController extends BaseController
 
     public function index(ServerRequestInterface $request): ResponseInterface
     {
+
+        // TODO: check if the installation wasn't executed before
+
         $this->loadSchema();
         $this->loadFixtures();
 
