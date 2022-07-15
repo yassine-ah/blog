@@ -12,8 +12,11 @@ class LoginController extends BaseController
 
     public function index(ServerRequestInterface $request): ResponseInterface
     {
+
+        $page = $this->getTwig()->render('login.html.twig');
+
         $response = new Response();
-        $response->getBody()->write('Installation is done');
+        $response->getBody()->write($page);
         return $response;
     }
 
@@ -37,7 +40,6 @@ class LoginController extends BaseController
             throw new \Exception('Invalid username or Password');
         }
 
-        session_start();
         session_regenerate_id(true);
         $_SESSION['user'] = $user;
 

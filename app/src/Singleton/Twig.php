@@ -15,6 +15,7 @@ class Twig extends Singleton
     {
         $loader = new FilesystemLoader(BASE_PATH . '/src/Template');
         $this->twig = new Environment($loader);
+        $this->twig->addGlobal('session', $_SESSION);
 
         parent::__construct();
     }
