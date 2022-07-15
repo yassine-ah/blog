@@ -7,3 +7,13 @@
 .header .blog-name {
     font-size: 24px;
 }
+
+.article-box {
+    background-color: bisque;
+    padding: 10px;
+    margin: 5px;
+}
+
+.article-box .comment-count {
+    margin-top: 10px;
+}

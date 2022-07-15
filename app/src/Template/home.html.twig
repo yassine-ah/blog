@@ -1,5 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    Hello world
+    {% for article in articles %}
+        <div class="article-box">
+            <div>{{ article.createdAt |date }} - {{ article.title }}</div>
+            <div style="display: flex; flex-direction: row">
+                <div>{{ article.content |slice(0, 1000) }}...</div>
+                <div><img src="{{ article.picture }}" width="100"></div>
+            </div>
+            <div class="comment-count">Kommentare: {{ article.comments |length }}</div>
+        </div>
+    {% endfor %}
 {% endblock %}
