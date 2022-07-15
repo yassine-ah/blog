@@ -4,9 +4,9 @@
 
 ### Download project
 ```
-wget https://github.com/vulhub/vulhub/archive/master.zip -O vulhub-master.zip
-unzip vulhub-master.zip
-cd vulhub-master
+wget https://github.com/yassine-ah/blog/archive/refs/heads/main.zip -O blog.zip
+unzip blog.zip
+cd blog
 ```
 
 ### Compile & run environment
@@ -21,13 +21,6 @@ docker-compose up -d
 ```
 docker exec -it php /bin/sh
 composer install
-symfony console doctrine:migrations:migrate
-symfony console doctrine:fixtures:load
-```
-
-## Tests
-Execute this command to run tests:
-```
-docker exec -it php /bin/sh
-./vendor/bin/phpunit
+yarn install
+curl http://localhost:8080/install
 ```
