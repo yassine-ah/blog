@@ -7,7 +7,7 @@
 <div style="display: flex; justify-content:space-between;">
     <div style="display: flex; flex-direction: row;">
         <div><a href="/">Home</div></a>
-        {% if session.user  %}<div>[New entry]</div>{% endif %}
+        {% if session.user  %}<div><a href="/artcile">[New entry]</a></div>{% endif %}
         <div>Imprint</div>
     </div>
     <div>{% if session.user %}<a href="/logout">Logout</a>{% else %}<a href="/login">Login</a>{% endif %}</div>
