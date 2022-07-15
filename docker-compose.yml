@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  database:
+    container_name: database
+    image: mariadb:10.7.4
+    environment:
+      MYSQL_ROOT_PASSWORD: check24_root
+      MYSQL_DATABASE: check24_db
+      MYSQL_USER: check24_usr
+      MYSQL_PASSWORD: check24_pwd
+    ports:
+      - '4306:3306'
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+  php:
+    container_name: php
+    build:
+      context: ./php
+    environment:
+      DATABASE_URL: "mysql://check24_usr:check24_pwd@database:3306/check24_db?serverVersion=mariadb-10.7.4"
+    ports:
+      - '9000:9000'
+    volumes:
+      - ./app:/var/www/html
+    depends_on:
+      - database
+
+  nginx:
+    container_name: nginx
+    image: nginx:stable-alpine
+    ports:
+      - '8080:80'
+    volumes:
+      - ./app:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+      - database
