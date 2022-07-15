@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="article-box">
+        <div>{{ article.createdAt |date }}</div>
+        <div>{{ article.title }}</div>
+        <div><img src="{{ article.picture }}"></div>
+        <div>{{ article.content }}</div>
+    </div>
+
+    {% for comment in comments %}
+        {{ comment.name }} ({{ comment.createdAt |date }}): {{ comment.message}} <span data-id="{{ comment.id }}" class="remove-comment">X</span>
+    {% endfor %}
+{% endblock %}
+
+{% block javascript %}
+<script>
+    const comments = document.getElementsByClassName("remove-comment");
+    for (let i = 0; i < comments.length; i++) {
+    comments.item(i).addEventListener('click', function(e) {
+        if (confirm('Are you sure about removing the comment')) {
+            //TODO: ajax call to remove comment
+        }
+    });
+}
+</script>
+{% endblock %}

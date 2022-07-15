@@ -16,6 +16,7 @@ $request = Laminas\Diactoros\ServerRequestFactory::fromGlobals(
 
 $router = new League\Route\Router;
 $router->map('GET', '/', [App\Controller\HomeController::class, 'index']);
+$router->map('GET', '/preview/{id}', [App\Controller\HomeController::class, 'preview']);
 $router->map('GET', '/login', [App\Controller\LoginController::class, 'index']);
 $router->map('POST', '/login', [App\Controller\LoginController::class, 'validate']);
 $router->map('GET', '/logout', [App\Controller\LogoutController::class, 'index']);

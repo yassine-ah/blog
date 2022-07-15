@@ -2,7 +2,7 @@
 
 {% block content %}
     {% for article in articles %}
-        <div class="article-box">
+        <div class="article-box" data-id="{{ article.id }}">
             <div>{{ article.createdAt |date }} - {{ article.title }}</div>
             <div style="display: flex; flex-direction: row">
                 <div>{{ article.content |slice(0, 1000) }}...</div>
@@ -12,3 +12,15 @@
         </div>
     {% endfor %}
 {% endblock %}
+
+{% block javascript %}
+<script>
+    const articles = document.getElementsByClassName("article-box");
+    for (let i = 0; i < articles.length; i++) {
+    articles.item(i).addEventListener('click', function(e){
+        window.open('/preview/' + this.getAttribute('data-id'));
+    });
+}
+</script>
+{% endblock %}
+
