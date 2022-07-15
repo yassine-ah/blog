@@ -11,8 +11,10 @@ class HomeController extends BaseController
 
     public function index(ServerRequestInterface $request): ResponseInterface
     {
+        $page = $this->getTwig()->render('home.html.twig');
+
         $response = new Response();
-        $response->getBody()->write('home page');
+        $response->getBody()->write($page);
         return $response;
     }
 
