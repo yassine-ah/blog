@@ -21,7 +21,7 @@ $router->map('GET', '/login', [App\Controller\LoginController::class, 'index']);
 $router->map('POST', '/login', [App\Controller\LoginController::class, 'validate']);
 $router->map('GET', '/logout', [App\Controller\LogoutController::class, 'index']);
 $router->map('GET', '/install', [App\Controller\InstallController::class, 'index']);
-$router->map('DELETE', '/comment', [App\Controller\CommentController::class, 'delete']);
+$router->map('DELETE', '/comment/{id}', [App\Controller\CommentController::class, 'delete']);
 
 $response = $router->dispatch($request);
 

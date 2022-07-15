@@ -28,7 +28,7 @@
             //TODO: ajax call to remove comment
             let xhr = new XMLHttpRequest()
 
-            xhr.open('DELETE', 'comment/' + this.getAttribute('data-id'), true)
+            xhr.open('DELETE', '/comment/' + this.getAttribute('data-id'), true)
             xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
             xhr.send();
 
